@@ -10,7 +10,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlin.reflect.KClass
 
-suspend fun getHtml(url: String, client: HttpClient? = null): String {
+internal suspend fun getHtml(url: String, client: HttpClient? = null): String {
     val httpClient: HttpClient = client ?: HttpClient(CIO)
 
     val response = httpClient.get(url)
@@ -20,11 +20,11 @@ suspend fun getHtml(url: String, client: HttpClient? = null): String {
     return "{}"
 }
 
-inline fun <reified T : Any> String.toJson(clazz: KClass<T>): T {
+internal inline fun <reified T : Any> String.toJson(clazz: KClass<T>): T {
     return Json.decodeFromString<T>(this.toString())
 }
 
-fun String.toJsonElement(): JsonElement {
+internal fun String.toJsonElement(): JsonElement {
     return Json.parseToJsonElement(this.toString())
 }
 
