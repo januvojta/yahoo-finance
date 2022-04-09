@@ -11,7 +11,7 @@ import java.net.ConnectException
 import java.nio.channels.UnresolvedAddressException
 import kotlin.test.Test
 
-class UtilsKtTest {
+class `getHtml()` {
     private val body = """{"name", "value"}"""
 
     private val clientOk = HttpClient(MockEngine { _ ->
@@ -29,34 +29,33 @@ class UtilsKtTest {
     })
 
     @Test
-    fun `getHtml() returns body on OK status`(): Unit = runBlocking {
-        assertThat(getHtml("url", clientOk)).isEqualTo(body)
+    fun `returns body on OK status `(): Unit = runBlocking {
+        assertThat(getHtml("mock.url", clientOk)).isEqualTo(body)
     }
 
     @Test
-    fun `getHtml() returns empty Json on not OK status`(): Unit = runBlocking {
-        assertThat(getHtml("url", clientError)).isEqualTo("{}")
+    fun `returns empty Json on not OK status `(): Unit = runBlocking {
+        assertThat(getHtml("mock.url", clientError)).isEqualTo("{}")
     }
 
     @Test
-    fun `getHtml() throws Exception on no connection or wrong url`(): Unit {
-        assertThatExceptionOfType(ConnectException::class.java).isThrownBy {
+    fun `throws Exception on no connection or wrong url `(): Unit {
+        assertThatExceptionOfType(Exception::class.java).isThrownBy {
             runBlocking {
                 getHtml("url")
             }
         }
-        assertThatExceptionOfType(URLParserException::class.java).isThrownBy {
+        assertThatExceptionOfType(Exception::class.java).isThrownBy {
             runBlocking {
                 getHtml("")
             }
         }
-        assertThatExceptionOfType(UnresolvedAddressException::class.java).isThrownBy {
+        assertThatExceptionOfType(Exception::class.java).isThrownBy {
             runBlocking {
                 getHtml("test://test.test")
             }
         }
     }
-
 
 }
 
