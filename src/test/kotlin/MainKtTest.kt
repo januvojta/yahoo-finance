@@ -5,7 +5,10 @@ internal class MainKtTest {
 
     @Test
     fun examplePassingTest() {
-        assertThat("Is this a String?").isExactlyInstanceOf(String::class.java)
+        assertThat("Is this a String?")
+            .isInstanceOf(String::class.java)
+            .contains("String")
+            .doesNotContain("Integer")
     }
 
     @Test
