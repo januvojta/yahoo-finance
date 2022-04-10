@@ -14,7 +14,7 @@ fun main(args: Array<String>) {
             text.toJsonElement().jsonObject["quoteResponse"]?.jsonObject?.get("result")?.jsonArray?.get(0).toString()
                 .toJson(EquitySummaryDTO::class)
 
-        val date = obj.gmtOffSetMilliseconds?.let { java.time.ZoneOffset.ofTotalSeconds(it.toInt()/1000) }
+        val date = obj.gmtOffSetMilliseconds?.let { java.time.ZoneOffset.ofTotalSeconds(it.toInt() / 1000) }
         println("date: ${date.toString()}")
     }
 }
