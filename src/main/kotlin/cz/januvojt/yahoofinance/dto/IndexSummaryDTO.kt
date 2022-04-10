@@ -1,13 +1,15 @@
-package cz.januvojt.yahoofinance.model
+package cz.januvojt.yahoofinance.dto
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CryptoSummary(
+data class IndexSummaryDTO(
+    val ask: Double? = null,
+    val askSize: Int? = null,
     override val averageDailyVolume10Day: Long? = null,
     override val averageDailyVolume3Month: Long? = null,
-    val circulatingSupply: Long? = null,
-    val coinImageUrl: String? = null,
+    val bid: Double? = null,
+    val bidSize: Int? = null,
     override val currency: String? = null,
     override val customPriceAlertConfidence: String? = null,
     override val esgPopulated: Boolean? = null,
@@ -26,16 +28,13 @@ data class CryptoSummary(
     override val fiftyTwoWeekLowChangePercent: Double? = null,
     override val fiftyTwoWeekRange: String? = null,
     override val firstTradeDateMilliseconds: Long? = null,
-    val fromCurrency: String? = null,
     override val fullExchangeName: String? = null,
     override val gmtOffSetMilliseconds: Long? = null,
     override val language: String? = null,
-    val lastMarket: String? = null,
+    val longName: String? = null,
     override val market: String? = null,
-    val marketCap: Long? = null,
     override val marketState: String? = null,
     val messageBoardId: String? = null,
-    val pageViewGrowthWeekly: Double? = null,
     override val priceHint: Int? = null,
     override val quoteSourceName: String? = null,
     override val quoteType: String? = null,
@@ -52,15 +51,11 @@ data class CryptoSummary(
     override val regularMarketVolume: Long? = null,
     override val shortName: String? = null,
     override val sourceInterval: Int? = null,
-    val startDate: Long? = null,
     override val symbol: String? = null,
-    val toCurrency: String? = null,
     override val tradeable: Boolean? = null,
     override val triggerable: Boolean? = null,
     override val twoHundredDayAverage: Double? = null,
     override val twoHundredDayAverageChange: Double? = null,
     override val twoHundredDayAverageChangePercent: Double? = null,
     override val typeDisp: String? = null,
-    val volume24Hr: Long? = null,
-    val volumeAllCurrencies: Long? = null,
-):SummaryBase
+): SummaryBaseDTO

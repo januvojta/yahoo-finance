@@ -1,4 +1,4 @@
-package cz.januvojt.yahoofinance.model
+package cz.januvojt.yahoofinance.dto
 
 import cz.januvojt.yahoofinance.serializer.BigIntegerSerializer
 import kotlinx.serialization.Serializable
@@ -6,7 +6,7 @@ import java.math.BigDecimal
 import java.math.BigInteger
 
 
-interface SummaryBase {
+interface SummaryBaseDTO {
     val averageDailyVolume10Day: Long?
     val averageDailyVolume3Month: Long?
     val currency: String?

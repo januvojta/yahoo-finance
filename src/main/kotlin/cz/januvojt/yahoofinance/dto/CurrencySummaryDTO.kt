@@ -1,9 +1,9 @@
-package cz.januvojt.yahoofinance.model
+package cz.januvojt.yahoofinance.dto
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CurrencySummary(
+data class CurrencySummaryDTO(
     val ask: Double? = null,
     val askSize: Int? = null,
     override val averageDailyVolume10Day: Long? = null,
@@ -57,4 +57,4 @@ data class CurrencySummary(
     override val twoHundredDayAverageChange: Double? = null,
     override val twoHundredDayAverageChangePercent: Double? = null,
     override val typeDisp: String? = null,
-): SummaryBase
+): SummaryBaseDTO

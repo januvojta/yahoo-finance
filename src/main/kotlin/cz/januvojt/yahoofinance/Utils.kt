@@ -1,5 +1,6 @@
 package cz.januvojt.yahoofinance
 
+import cz.januvojt.yahoofinance.model.Rating
 import io.ktor.client.*
 import io.ktor.client.engine.*
 import io.ktor.client.engine.cio.*
@@ -49,4 +50,12 @@ internal fun String.toJsonElement(): JsonElement {
     return Json.parseToJsonElement(this.toString())
 }
 
+internal fun String.toRating(): Rating{
+    val split = this.toString().split(" - ")
+    return if (split.size == 2){
+        Rating(split[0].toDouble(), split[1])
+    }else{
+        Rating(null,null)
+    }
+}
 

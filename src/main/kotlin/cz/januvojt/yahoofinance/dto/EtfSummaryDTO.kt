@@ -1,9 +1,9 @@
-package cz.januvojt.yahoofinance.model
+package cz.januvojt.yahoofinance.dto
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class EtfSummary(
+data class EtfSummaryDTO(
     val ask: Double? = null,
     val askSize: Int? = null,
     override val averageDailyVolume10Day: Long? = null,
@@ -76,4 +76,4 @@ data class EtfSummary(
     override val twoHundredDayAverageChangePercent: Double? = null,
     override val typeDisp: String? = null,
     val ytdReturn: Double? = null,
-): SummaryBase
+): SummaryBaseDTO
