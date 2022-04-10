@@ -1,4 +1,5 @@
 import cz.januvojt.yahoofinance.getHtml
+import cz.januvojt.yahoofinance.model.CryptoSummary
 import cz.januvojt.yahoofinance.model.EtfSummary
 import cz.januvojt.yahoofinance.model.StockSummary
 import cz.januvojt.yahoofinance.model.Summary
@@ -9,12 +10,12 @@ import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 
 fun main(args: Array<String>) {
-    val url = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=VOO"
+    val url = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=XMR-BTC"
     runBlocking {
         val text = getHtml(url)
         val obj =
             text.toJsonElement().jsonObject["quoteResponse"]?.jsonObject?.get("result")?.jsonArray?.get(0).toString()
-                .toJson(EtfSummary::class)
+                .toJson(CryptoSummary::class)
         println("name: ${obj.shortName}")
 
     }
