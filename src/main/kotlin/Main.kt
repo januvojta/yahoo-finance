@@ -7,12 +7,12 @@ import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 
 fun main(args: Array<String>) {
-    val url = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=ALI=F"
+    val url = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=^VIX"
     runBlocking {
         val text = getHtml(url)
         val obj =
             text.toJsonElement().jsonObject["quoteResponse"]?.jsonObject?.get("result")?.jsonArray?.get(0).toString()
-                .toJson(FutureSummary::class)
+                .toJson(IndexSummary::class)
         println("name: ${obj.shortName}")
 
     }
