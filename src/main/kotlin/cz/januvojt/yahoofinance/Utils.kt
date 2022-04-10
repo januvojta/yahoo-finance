@@ -10,10 +10,17 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlin.reflect.KClass
 
+private const val USER_AGENT_HEADER = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36"
+
+
 internal suspend fun getHtml(url: String, client: HttpClient? = null): String {
     val httpClient: HttpClient = client ?: HttpClient(CIO)
 
-    val response = httpClient.get(url)
+    val response = httpClient.get(url){
+        headers{
+            append(HttpHeaders.UserAgent, USER_AGENT_HEADER)
+        }
+    }
     if (response.status == HttpStatusCode.OK) {
         return response.bodyAsText()
     }
