@@ -1,5 +1,6 @@
 package cz.januvojt.yahoofinance.model
 
+import cz.januvojt.yahoofinance.constants.Conversions
 import cz.januvojt.yahoofinance.dto.CryptoSummaryDTO
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
@@ -60,7 +61,6 @@ data class CryptoSummary(
     val volumeAllCurrencies: Long? = null,
 )
 
-private const val milToSec = 1000
 
 internal fun CryptoSummaryDTO.toCryptoSummary(): CryptoSummary {
     return CryptoSummary(
@@ -102,11 +102,11 @@ internal fun CryptoSummaryDTO.toCryptoSummary(): CryptoSummary {
         this.regularMarketOpen,
         this.regularMarketPreviousClose,
         this.regularMarketPrice,
-        this.regularMarketTime?.let { Instant.fromEpochSeconds(it, milToSec) },
+        this.regularMarketTime?.let { Instant.fromEpochSeconds(it, Conversions.MIL_TO_SEC) },
         this.regularMarketVolume,
         this.shortName,
         this.sourceInterval,
-        this.startDate?.let { Instant.fromEpochSeconds(it, milToSec) },
+        this.startDate?.let { Instant.fromEpochSeconds(it, Conversions.MIL_TO_SEC) },
         this.symbol,
         this.toCurrency,
         this.tradeable,

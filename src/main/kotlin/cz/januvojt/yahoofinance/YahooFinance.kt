@@ -14,7 +14,7 @@ class YahooFinance {
             .jsonObject["quoteResponse"]
             ?.jsonObject?.get("result")
             ?.jsonArray?.get(0) ?: return null
-
+//TODO: logs!
         return serializeCrypto(json)
     }
 
