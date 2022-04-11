@@ -1,5 +1,6 @@
 package cz.januvojt.yahoofinance.model
 
+import cz.januvojt.yahoofinance.constants.Conversions
 import cz.januvojt.yahoofinance.dto.EquitySummaryDTO
 import cz.januvojt.yahoofinance.toRating
 import kotlinx.datetime.Instant
@@ -84,8 +85,6 @@ data class EquitySummary(
     val typeDisp: String? = null,
 )
 
-private const val milToSec = 1000
-
 internal fun EquitySummaryDTO.toEquitySummary(): EquitySummary {
     return EquitySummary(
         this.ask,
@@ -99,10 +98,10 @@ internal fun EquitySummaryDTO.toEquitySummary(): EquitySummary {
         this.currency,
         this.customPriceAlertConfidence,
         this.displayName,
-        this.dividendDate?.let { Instant.fromEpochSeconds(it, milToSec) },
-        this.earningsTimestamp?.let { Instant.fromEpochSeconds(it, milToSec) },
-        this.earningsTimestampEnd?.let { Instant.fromEpochSeconds(it, milToSec) },
-        this.earningsTimestampStart?.let { Instant.fromEpochSeconds(it, milToSec) },
+        this.dividendDate?.let { Instant.fromEpochSeconds(it, Conversions.MIL_TO_SEC) },
+        this.earningsTimestamp?.let { Instant.fromEpochSeconds(it, Conversions.MIL_TO_SEC) },
+        this.earningsTimestampEnd?.let { Instant.fromEpochSeconds(it, Conversions.MIL_TO_SEC) },
+        this.earningsTimestampStart?.let { Instant.fromEpochSeconds(it, Conversions.MIL_TO_SEC) },
         this.epsCurrentYear,
         this.epsForward,
         this.epsTrailingTwelveMonths,
@@ -134,7 +133,7 @@ internal fun EquitySummaryDTO.toEquitySummary(): EquitySummary {
         this.postMarketChange,
         this.postMarketChangePercent,
         this.postMarketPrice,
-        this.postMarketTime?.let { Instant.fromEpochSeconds(it, milToSec) },
+        this.postMarketTime?.let { Instant.fromEpochSeconds(it, Conversions.MIL_TO_SEC) },
         this.priceEpsCurrentYear,
         this.priceHint,
         this.priceToBook,
@@ -147,7 +146,7 @@ internal fun EquitySummaryDTO.toEquitySummary(): EquitySummary {
         this.regularMarketOpen,
         this.regularMarketPreviousClose,
         this.regularMarketPrice,
-        this.regularMarketTime?.let { Instant.fromEpochSeconds(it, milToSec) },
+        this.regularMarketTime?.let { Instant.fromEpochSeconds(it, Conversions.MIL_TO_SEC) },
         this.regularMarketVolume,
         this.sharesOutstanding,
         this.shortName,

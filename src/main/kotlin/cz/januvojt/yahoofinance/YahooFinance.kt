@@ -1,30 +1,75 @@
 package cz.januvojt.yahoofinance
 
+import cz.januvojt.yahoofinance.constants.URLs
 import cz.januvojt.yahoofinance.model.*
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
 
 class YahooFinance {
 
-    fun getCryptoSummary(symbol: String): CryptoSummary{
-        TODO("implement")
+    suspend fun getCryptoSummary(symbol: String): CryptoSummary? {
+        val formattedSymbol = formatCrypto(symbol)
+        val text = getHtmlBody(URLs.YAHOO_FINANCE_SUMMARY + formattedSymbol)
+        val json = text.toJsonElement()
+            .jsonObject["quoteResponse"]
+            ?.jsonObject?.get("result")
+            ?.jsonArray?.get(0) ?: return null
+
+        return serializeCrypto(json)
     }
 
-    fun getCurrencySummary(symbol: String):CurrencySummary{
-        TODO("implement")
+    suspend fun getCurrencySummary(symbol: String): CurrencySummary? {
+        val formattedSymbol = formatCurrency(symbol)
+        val text = getHtmlBody(URLs.YAHOO_FINANCE_SUMMARY + formattedSymbol)
+        val json = text.toJsonElement()
+            .jsonObject["quoteResponse"]
+            ?.jsonObject?.get("result")
+            ?.jsonArray?.get(0) ?: return null
+
+        return serializeCurrency(json)
     }
 
-    fun getEquitySummary(symbol: String): EquitySummary{
-        TODO("implement")
+    suspend fun getEquitySummary(symbol: String): EquitySummary? {
+        val formattedSymbol = formatEquity(symbol)
+        val text = getHtmlBody(URLs.YAHOO_FINANCE_SUMMARY + formattedSymbol)
+        val json = text.toJsonElement()
+            .jsonObject["quoteResponse"]
+            ?.jsonObject?.get("result")
+            ?.jsonArray?.get(0) ?: return null
+
+        return serializeEquity(json)
     }
 
-    fun getEtfSummary(symbol: String): EtfSummary{
-        TODO("implement")
+    suspend fun getEtfSummary(symbol: String): EtfSummary? {
+        val formattedSymbol = formatEtf(symbol)
+        val text = getHtmlBody(URLs.YAHOO_FINANCE_SUMMARY + formattedSymbol)
+        val json = text.toJsonElement()
+            .jsonObject["quoteResponse"]
+            ?.jsonObject?.get("result")
+            ?.jsonArray?.get(0) ?: return null
+
+        return serializeEtf(json)
     }
 
-    fun getFutureSummary(symbol: String): FutureSummary{
-        TODO("implement")
+    suspend fun getFutureSummary(symbol: String): FutureSummary? {
+        val formattedSymbol = formatFuture(symbol)
+        val text = getHtmlBody(URLs.YAHOO_FINANCE_SUMMARY + formattedSymbol)
+        val json = text.toJsonElement()
+            .jsonObject["quoteResponse"]
+            ?.jsonObject?.get("result")
+            ?.jsonArray?.get(0) ?: return null
+
+        return serializeFuture(json)
     }
 
-    fun getIndexSummary(symbol: String): IndexSummary{
-        TODO("implement")
+    suspend fun getIndexSummary(symbol: String): IndexSummary? {
+        val formattedSymbol = formatIndex(symbol)
+        val text = getHtmlBody(URLs.YAHOO_FINANCE_SUMMARY + formattedSymbol)
+        val json = text.toJsonElement()
+            .jsonObject["quoteResponse"]
+            ?.jsonObject?.get("result")
+            ?.jsonArray?.get(0) ?: return null
+
+        return serializeIndex(json)
     }
 }

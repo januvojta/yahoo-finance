@@ -7,8 +7,6 @@ import io.ktor.utils.io.*
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
-import java.net.ConnectException
-import java.nio.channels.UnresolvedAddressException
 import kotlin.test.Test
 
 internal class `getHtml()` {
@@ -30,29 +28,29 @@ internal class `getHtml()` {
 
     @Test
     fun `returns body on OK status `(): Unit = runBlocking {
-        assertThat(getHtml("mock.url", clientOk)).isEqualTo(body)
+        assertThat(getHtmlBody("mock.url", clientOk)).isEqualTo(body)
     }
 
     @Test
     fun `returns empty Json on not OK status `(): Unit = runBlocking {
-        assertThat(getHtml("mock.url", clientError)).isEqualTo("{}")
+        assertThat(getHtmlBody("mock.url", clientError)).isEqualTo("{}")
     }
 
     @Test
     fun `throws Exception on no connection or wrong url `(): Unit {
         assertThatExceptionOfType(Exception::class.java).isThrownBy {
             runBlocking {
-                getHtml("url")
+                getHtmlBody("url")
             }
         }
         assertThatExceptionOfType(Exception::class.java).isThrownBy {
             runBlocking {
-                getHtml("")
+                getHtmlBody("")
             }
         }
         assertThatExceptionOfType(Exception::class.java).isThrownBy {
             runBlocking {
-                getHtml("test://test.test")
+                getHtmlBody("test://test.test")
             }
         }
     }

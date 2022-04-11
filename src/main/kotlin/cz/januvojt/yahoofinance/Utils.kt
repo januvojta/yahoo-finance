@@ -6,7 +6,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlin.reflect.KClass
 
-internal inline fun <reified T : Any> String.toJson(clazz: KClass<T>): T {
+internal inline fun <reified T : Any> JsonElement.toObject(clazz: KClass<T>): T {
     return Json.decodeFromString<T>(this.toString())
 }
 

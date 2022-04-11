@@ -1,5 +1,6 @@
 package cz.januvojt.yahoofinance.model
 
+import cz.januvojt.yahoofinance.constants.Conversions
 import cz.januvojt.yahoofinance.dto.CurrencySummaryDTO
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
@@ -54,8 +55,6 @@ data class CurrencySummary(
     val typeDisp: String? = null,
 )
 
-private const val milToSec = 1000
-
 internal fun CurrencySummaryDTO.toCurrencySummary(): CurrencySummary {
     return CurrencySummary(
         this.ask,
@@ -94,7 +93,7 @@ internal fun CurrencySummaryDTO.toCurrencySummary(): CurrencySummary {
         this.regularMarketOpen,
         this.regularMarketPreviousClose,
         this.regularMarketPrice,
-        this.regularMarketTime?.let { Instant.fromEpochSeconds(it, milToSec) },
+        this.regularMarketTime?.let { Instant.fromEpochSeconds(it, Conversions.MIL_TO_SEC) },
         this.regularMarketVolume,
         this.shortName,
         this.sourceInterval,

@@ -1,5 +1,6 @@
 package cz.januvojt.yahoofinance.model
 
+import cz.januvojt.yahoofinance.constants.Conversions
 import cz.januvojt.yahoofinance.dto.EtfSummaryDTO
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
@@ -73,7 +74,6 @@ data class EtfSummary(
     val ytdReturn: Double? = null,
 )
 
-private const val milToSec = 1000
 
 internal fun EtfSummaryDTO.toEtfSummary(): EtfSummary {
     return EtfSummary(
@@ -86,7 +86,7 @@ internal fun EtfSummaryDTO.toEtfSummary(): EtfSummary {
         this.bookValue,
         this.currency,
         this.customPriceAlertConfidence,
-        this.dividendDate?.let { Instant.fromEpochSeconds(it, milToSec) },
+        this.dividendDate?.let { Instant.fromEpochSeconds(it, Conversions.MIL_TO_SEC) },
         this.epsTrailingTwelveMonths,
         this.esgPopulated,
         this.exchange,
@@ -113,7 +113,7 @@ internal fun EtfSummaryDTO.toEtfSummary(): EtfSummary {
         this.postMarketChange,
         this.postMarketChangePercent,
         this.postMarketPrice,
-        this.postMarketTime?.let { Instant.fromEpochSeconds(it, milToSec) },
+        this.postMarketTime?.let { Instant.fromEpochSeconds(it, Conversions.MIL_TO_SEC) },
         this.priceHint,
         this.priceToBook,
         this.quoteSourceName,
@@ -125,7 +125,7 @@ internal fun EtfSummaryDTO.toEtfSummary(): EtfSummary {
         this.regularMarketOpen,
         this.regularMarketPreviousClose,
         this.regularMarketPrice,
-        this.regularMarketTime?.let { Instant.fromEpochSeconds(it, milToSec) },
+        this.regularMarketTime?.let { Instant.fromEpochSeconds(it, Conversions.MIL_TO_SEC) },
         this.regularMarketVolume,
         this.sharesOutstanding,
         this.shortName,
