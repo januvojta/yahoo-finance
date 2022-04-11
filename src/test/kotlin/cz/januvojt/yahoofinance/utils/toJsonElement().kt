@@ -9,7 +9,7 @@ import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class `toJsonElement()` {
+internal class `toJsonElement()` {
 
     @Test
     fun `decodes value into Json element `() {

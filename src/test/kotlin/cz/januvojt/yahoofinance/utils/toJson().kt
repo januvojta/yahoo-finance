@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.Test
 
-class `toJson()` {
+internal class `toJson()` {
     @Test
     fun `decodes value into provided KClass `() {
         assertThat("""{"test":"test","number":"1"}""".toJson(cz.januvojt.yahoofinance.utils.Test::class))

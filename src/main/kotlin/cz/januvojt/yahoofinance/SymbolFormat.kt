@@ -1,28 +1,28 @@
 package cz.januvojt.yahoofinance
 
-fun formatCrypto(symbol: String): String {
+internal fun formatCrypto(symbol: String): String {
     return symbol.uppercase()
 }
 
-fun formatCurrency(symbol: String): String {
-    val formattedSymbol = if (symbol.endsWith("=X")) symbol else "$symbol=X"
+internal fun formatCurrency(symbol: String): String {
+    val formattedSymbol = if (symbol.endsWith(suffix = "=X", ignoreCase = true)) symbol else "$symbol=X"
     return formattedSymbol.uppercase()
 }
 
-fun formatEquity(symbol: String): String {
+internal fun formatEquity(symbol: String): String {
     return symbol.uppercase()
 }
 
-fun formatEtf(symbol: String): String {
+internal fun formatEtf(symbol: String): String {
     return symbol.uppercase()
 }
 
-fun formatFuture(symbol: String): String {
-    val formattedSymbol = if (symbol.endsWith("=F")) symbol else "$symbol=F"
+internal fun formatFuture(symbol: String): String {
+    val formattedSymbol = if (symbol.endsWith(suffix = "=F", ignoreCase = true)) symbol else "$symbol=F"
     return formattedSymbol.uppercase()
 }
 
-fun formatIndex(symbol: String): String {
-    val formattedSymbol = if (symbol.startsWith("^")) symbol else "^$symbol"
+internal fun formatIndex(symbol: String): String {
+    val formattedSymbol = if (symbol.startsWith(prefix = "^", ignoreCase = true)) symbol else "^$symbol"
     return formattedSymbol.uppercase()
 }

@@ -4,7 +4,7 @@ import cz.januvojt.yahoofinance.getHttpClient
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
-class `getHttpClient()` {
+internal class `getHttpClient()` {
 
     @Test
     fun `sets proxy to value passed in argument `() {

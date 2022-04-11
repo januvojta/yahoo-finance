@@ -11,7 +11,7 @@ import java.net.ConnectException
 import java.nio.channels.UnresolvedAddressException
 import kotlin.test.Test
 
-class `getHtml()` {
+internal class `getHtml()` {
     private val body = """{"name", "value"}"""
 
     private val clientOk = HttpClient(MockEngine { _ ->
